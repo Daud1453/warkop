@@ -34,11 +34,13 @@ if ($result && $result->num_rows > 0) {
 <body>
     <div class="receipt-container">
         <h1>Warkop Panjalu</h1>
-        <p><strong>Order ID:</strong> <?php echo htmlspecialchars($order['id']); ?></p>
-        <p><strong>Date:</strong> <?php echo htmlspecialchars($order['created_at']); ?></p>
-        <p><strong>Items:</strong> <?php echo htmlspecialchars($order['items']); ?></p>
-        <p><strong>Total:</strong> Rp. <?php echo number_format($order['total_price'], 0, ',', '.'); ?></p>
-        <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($order['payment_method']); ?></p>
+        <p><strong>Order ID:</strong> <?= htmlspecialchars($order['id']) ?></p>
+        <p><strong>Date:</strong> <?= htmlspecialchars($order['created_at']) ?></p>
+        <p><strong>Items:</strong> <?= htmlspecialchars($order['items']) ?></p>
+        <p><strong>Total Sebelum Diskon:</strong> Rp. <?= number_format($order['total_price'] + $order['discount_amount'], 0, ',', '.') ?></p>
+        <p><strong>Diskon:</strong> -Rp. <?= number_format($order['discount_amount'], 0, ',', '.') ?></p>
+        <p><strong>Total Akhir:</strong> Rp. <?= number_format($order['total_price'], 0, ',', '.') ?></p>
+        <p><strong>Metode Pembayaran:</strong> <?= htmlspecialchars($order['payment_method']) ?></p>
         <button onclick="window.print()">Print Receipt</button>
         <a href="new_order.php" class="btn-back">Back to Orders</a>
     </div>
